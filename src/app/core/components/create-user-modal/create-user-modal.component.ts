@@ -79,7 +79,7 @@ export class CreateUserModalComponent
     this.usersService.setUserForEdit = null;
   }
 
-  public ngOnDestroy() {
+  public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
