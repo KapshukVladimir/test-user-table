@@ -4,6 +4,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
@@ -13,6 +14,7 @@ import { AbstractErrorMessage } from '@/abstracts/abstract-error-message';
 import { passwordMatchValidator } from '@/helpers/utils/customValidators';
 import { UsersService } from '../../services/users/users.service';
 import { UserAdapter } from '@/components/create-user-modal/adapters/user.adapter';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-user-modal',
@@ -22,10 +24,11 @@ import { UserAdapter } from '@/components/create-user-modal/adapters/user.adapte
 })
 export class CreateUserModalComponent
   extends AbstractErrorMessage
-  implements OnInit
+  implements OnInit, OnDestroy
 {
   @Input() openingType!: string;
   @Output() isClosed: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public subscription!: Subscription;
   constructor(
     private cdr: ChangeDetectorRef,
     private usersService: UsersService
@@ -45,7 +48,7 @@ export class CreateUserModalComponent
 
   public ngOnInit(): void {
     this.initializeFormGroup();
-    this.usersService.userForEdit$.subscribe((user) => {
+    this.subscription = this.usersService.userForEdit$.subscribe((user) => {
       if (user) {
         this.formGroup.patchValue(UserAdapter.prepareFormGroup(user));
         this.cdr.detectChanges();
@@ -74,6 +77,10 @@ export class CreateUserModalComponent
     );
     this.isClosed.emit(true);
     this.usersService.setUserForEdit = null;
+  }
+
+  public ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   private initializeFormGroup(): void {
