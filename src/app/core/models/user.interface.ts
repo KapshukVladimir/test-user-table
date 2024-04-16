@@ -21,3 +21,14 @@ export interface IUserForm {
   repeatPassword: FormControl<string | null>;
   userType: FormControl<string | null>;
 }
+
+export interface IUserAdapterForm {
+  id: string;
+  email: string;
+  password: string;
+  userName: string;
+  firstName: string;
+  lastName: string;
+  userType: string;
+  repeatPassword: string | undefined;
+}

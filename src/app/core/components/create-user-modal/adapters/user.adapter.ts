@@ -1,4 +1,4 @@
-import { IUser } from '@/models/user.interface';
+import { IUser, IUserAdapterForm } from '@/models/user.interface';
 import { FormGroup } from '@angular/forms';
 import { generateRandomId } from '@/helpers/utils/functions';
 
@@ -36,7 +36,7 @@ export class UserAdapter {
     password,
     id,
     repeat_password,
-  }: IUser): any {
+  }: IUser): IUserAdapterForm {
     return {
       id: id || generateRandomId(),
       email: email,
