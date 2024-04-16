@@ -48,14 +48,7 @@ export class CreateUserModalComponent
 
   public ngOnInit(): void {
     this.initializeFormGroup();
-    this.subscription = this.usersService.userForEdit$.subscribe((user) => {
-      if (user) {
-        this.formGroup.patchValue(UserAdapter.prepareFormGroup(user));
-        this.cdr.detectChanges();
-        return;
-      }
-      this.formGroup.reset();
-    });
+    this.initializeCurrentUser();
   }
 
   public deleteItem(): void {
@@ -81,6 +74,17 @@ export class CreateUserModalComponent
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  private initializeCurrentUser(): void {
+    this.subscription = this.usersService.userForEdit$.subscribe((user) => {
+      if (user) {
+        this.formGroup.patchValue(UserAdapter.prepareFormGroup(user));
+        this.cdr.detectChanges();
+        return;
+      }
+      this.formGroup.reset();
+    });
   }
 
   private initializeFormGroup(): void {
