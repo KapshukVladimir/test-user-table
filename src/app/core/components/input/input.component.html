@@ -1,0 +1,19 @@
+<div class="input-wrapper">
+  <label class="label" for="{{ label }}"
+    >{{ labelName }}<span *ngIf="isRequired">*</span></label
+  >
+  <input
+    class="input"
+    placeholder="{{ labelName }}"
+    [type]="type"
+    [required]="isRequired"
+    [class.error]="
+      formControl.invalid && formControl.touched && formControl.dirty
+    "
+    [formControl]="formControl" />
+  <div
+    *ngIf="formControl.invalid && formControl.touched && formControl.dirty"
+    class="error-message">
+    {{ errorMessage }}
+  </div>
+</div>

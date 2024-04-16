@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>USERNAME</th>
+      <th>FIRST NAME</th>
+      <th>LAST NAME</th>
+      <th>EMAIL</th>
+      <th>TYPE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let userItem of tableData" (click)="choseTableItem(userItem)">
+      <td>{{ userItem.user_name }}</td>
+      <td>{{ userItem.first_name }}</td>
+      <td>{{ userItem.last_name }}</td>
+      <td>{{ userItem.email }}</td>
+      <td>{{ userItem.user_type }}</td>
+    </tr>
+  </tbody>
+</table>

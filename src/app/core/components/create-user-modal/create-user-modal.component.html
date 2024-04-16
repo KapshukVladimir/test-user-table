@@ -1,0 +1,106 @@
+<div class="modal">
+  <div class="modal__title-wrapper">
+    <h4 class="modal__title">
+      {{ getTitleByOpeningType }}
+    </h4>
+
+    <div class="modal__close-btn">
+      <app-button
+        [buttonName]="'X'"
+        [buttonType]="'icon'"
+        (click)="closeModal()"></app-button>
+    </div>
+  </div>
+  <form class="modal__form" [formGroup]="formGroup">
+    <div class="modal__form-item">
+      <app-input
+        ngDefaultControl
+        [formControl]="formGroup.controls['userName']"
+        [errorMessage]="defaultRequiredMessage"
+        [labelName]="'User name'"
+        [label]="'user-name'"
+        [isRequired]="true"></app-input>
+    </div>
+    <div class="modal__form-item">
+      <app-input
+        ngDefaultControl
+        [formControl]="formGroup.get('firstName') | controlConverter"
+        [errorMessage]="defaultRequiredMessage"
+        [labelName]="'First name'"
+        [label]="'first-name'"
+        [isRequired]="true"></app-input>
+    </div>
+    <div class="modal__form-item">
+      <app-input
+        ngDefaultControl
+        [formControl]="formGroup.get('lastName') | controlConverter"
+        [errorMessage]="defaultRequiredMessage"
+        [labelName]="'Last name'"
+        [label]="'last-name'"
+        [isRequired]="true"></app-input>
+    </div>
+    <div class="modal__form-item">
+      <app-input
+        ngDefaultControl
+        [formControl]="formGroup.get('email') | controlConverter"
+        [label]="'email'"
+        [labelName]="'Email'"
+        [errorMessage]="emailErrorMessage"
+        [isRequired]="true"></app-input>
+    </div>
+    <div class="modal__form-item">
+      <app-select
+        ngDefaultControl
+        [formControl]="formGroup.get('userType') | controlConverter"
+        [label]="'user-type'"
+        [labelName]="'User type'"
+        [isRequired]="true">
+      </app-select>
+    </div>
+    <div class="modal__form-item">
+      <app-input
+        ngDefaultControl
+        [type]="'password'"
+        [errorMessage]="passwordErrorMessage"
+        [labelName]="'Password'"
+        [formControl]="formGroup.get('password') | controlConverter"
+        [label]="'password'"
+        [isRequired]="true"></app-input>
+    </div>
+    <div class="modal__form-item">
+      <app-input
+        ngDefaultControl
+        [type]="'password'"
+        [errorMessage]="samePasswordErrorMessage"
+        [labelName]="'Repeat password '"
+        [formControl]="formGroup.get('repeatPassword') | controlConverter"
+        [label]="'repeat-password'"
+        [isRequired]="true"></app-input>
+    </div>
+  </form>
+
+  <div class="modal__button-container">
+    <ng-container [ngSwitch]="openingType">
+      <ng-container *ngSwitchCase="'create'">
+        <app-button
+          [buttonName]="'Create'"
+          [buttonType]="'create'"
+          [isDisabled]="formGroup.invalid"
+          (click)="createItem()"></app-button>
+      </ng-container>
+      <ng-container *ngSwitchCase="'select'">
+        <div class="modal__footer-buttons">
+          <app-button
+            [buttonName]="'Delete'"
+            [buttonType]="'delete'"
+            (click)="deleteItem()"></app-button>
+          <app-button
+            [buttonName]="'Save'"
+            [buttonType]="'save'"
+            [isDisabled]="formGroup.invalid"
+            (click)="updateItem()"></app-button>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

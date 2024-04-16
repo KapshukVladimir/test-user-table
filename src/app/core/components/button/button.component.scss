@@ -1,0 +1,64 @@
+.btn-wrapper {
+  width: 100%;
+}
+
+.default-btn {
+  padding: 15px 25px;
+  border-radius: 6px;
+  border: 1px solid #2e8ff0;
+  outline-color: lightblue;
+  background-color: #2e8ff0;
+  cursor: pointer;
+  transition: background-color;
+
+  &:disabled {
+    background-color: #8f8b8b;
+    border-color: #8f8b8b;
+    transition: none;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: #8f8b8b;
+      border-color: #8f8b8b;
+    }
+  }
+}
+.create,
+.save {
+  color: #fff;
+  transition: 0.3s ease-out;
+
+  &:hover {
+    transition: 0.3s ease-in-out;
+    background-color: #1265ff;
+  }
+}
+
+.delete {
+  background-color: #f44682;
+  border-color: #f44682;
+  color: #fff;
+
+  &:hover {
+  }
+}
+
+.icon {
+  padding: 0;
+  color: #000;
+  background-color: transparent;
+  border: none;
+}
+
+.not-found {
+  background-color: transparent;
+  color: #2e8ff0;
+
+  transition: background-color 0.3s ease-out;
+
+  &:hover {
+    transition: 0.3s ease-out;
+    background-color: #2e8ff0;
+    color: white;
+  }
+}

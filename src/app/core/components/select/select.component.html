@@ -1,0 +1,9 @@
+<div class="select-wrapper">
+  <label class="label" for="{{ label }}"
+    >{{ labelName }}<span *ngIf="isRequired">*</span></label
+  >
+  <select name="type" [formControl]="formControl">
+    <option selected [value]="'Admin'">Admin</option>
+    <option [value]="'Driver'">Driver</option>
+  </select>
+</div>

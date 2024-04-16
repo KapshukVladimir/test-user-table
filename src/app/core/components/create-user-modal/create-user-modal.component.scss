@@ -1,0 +1,32 @@
+.modal {
+  padding: 30px;
+  width: 100%;
+  min-height: 600px;
+  border-radius: 6px;
+  background-color: #fff;
+
+  &__title-wrapper {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 20px;
+    color: #2d2828;
+  }
+
+  &__button-container {
+    width: 100%;
+    margin: 10px auto 0;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__footer-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
